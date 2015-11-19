@@ -197,8 +197,8 @@
   <ItemGroup>
     <Compile Include="DelegateComparer`1.cs" />
     <Compile Include="DelegateEqualityComparer`1.cs" />
-    <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\Highway1.Universal.rd.xml" />
   </ItemGroup>
