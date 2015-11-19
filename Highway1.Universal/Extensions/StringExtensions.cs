@@ -83,7 +83,7 @@
         /// <returns></returns>
         [Pure]
         public static BigInteger? ToBigInteger(this string value)
-            => TryParse<BigInteger>(value, BigInteger.TryParse);
+            => value == null ? null : TryParse<BigInteger>(value, BigInteger.TryParse);
 
         /// <summary>To the big integer.</summary>
         /// <param name="value">The value.</param>
@@ -92,7 +92,11 @@
         /// <returns></returns>
         [Pure]
         public static BigInteger? ToBigInteger(this string value, NumberStyles style, IFormatProvider provider)
-            => NumericTryParse<BigInteger>(value, style, provider, BigInteger.TryParse);
+        {
+            Contract.Requires<ArgumentException>(!style.HasFlag(NumberStyles.AllowHexSpecifier), nameof(style));
+            Contract.Requires<ArgumentException>(!style.HasFlag(NumberStyles.HexNumber), nameof(style));
+            return NumericTryParse<BigInteger>(value, style, provider, BigInteger.TryParse);
+        }
 
         /// <summary>To the bool.</summary>
         /// <param name="value">The value.</param>
@@ -115,7 +119,11 @@
         /// <returns></returns>
         [Pure]
         public static byte? ToByte(this string value, NumberStyles style, IFormatProvider provider)
-            => NumericTryParse<byte>(value, style, provider, byte.TryParse);
+        {
+            Contract.Requires<ArgumentException>(!style.HasFlag(NumberStyles.AllowHexSpecifier), nameof(style));
+            Contract.Requires<ArgumentException>(!style.HasFlag(NumberStyles.HexNumber), nameof(style));
+            return NumericTryParse<byte>(value, style, provider, byte.TryParse);
+        }
 
         /// <summary>To the character.</summary>
         /// <param name="value">The value.</param>
