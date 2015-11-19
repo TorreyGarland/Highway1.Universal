@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.Extensions
+﻿namespace Highway1.Universal
 {
 
     using System;
