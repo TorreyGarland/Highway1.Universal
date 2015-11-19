@@ -139,6 +139,31 @@
             return new ObservableCollection<T>(enumerable);
         }
 
+        /// <summary>To the read only collection.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        [Pure]
+        public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IEnumerable<T> enumerable)
+        {
+            Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
+            Contract.Ensures(Contract.Result<ReadOnlyCollection<T>>() != null, nameof(CollectionExtensions.ToReadOnlyCollection));
+            return new ReadOnlyCollection<T>(enumerable.ToList());
+        }
+
+        /// <summary>To the read only dictionary.</summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="dictionary">The dictionary.</param>
+        /// <returns></returns>
+        [Pure]
+        public static ReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
+        {
+            Contract.Requires<ArgumentNullException>(dictionary != null, nameof(dictionary));
+            Contract.Ensures(Contract.Result<ReadOnlyDictionary<TKey, TValue>>() != null, nameof(CollectionExtensions.ToReadOnlyDictionary));
+            return new ReadOnlyDictionary<TKey, TValue>(dictionary);
+        }
+
         /// <summary>To the read only observable collection.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
