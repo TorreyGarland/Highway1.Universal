@@ -34,6 +34,20 @@
             collection.AddMany(enumerable);
         }
 
+        /// <summary>Distincts the specified equals.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <param name="equals">The equals.</param>
+        /// <param name="hashCode">The hash code.</param>
+        /// <returns></returns>
+        [Pure]
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> enumerable, Func<T, T, bool> equals, Func<T, int> hashCode = null)
+        {
+            Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
+            Contract.Requires<ArgumentNullException>(equals != null, nameof(equals));
+            return enumerable.Distinct(new DelegateEqualityComparer<T>(equals, hashCode));
+        }
+
         /// <summary>Eaches the specified action.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
@@ -101,6 +115,18 @@
             return new LinkedList<T>(enumerable);
         }
 
+        /// <summary>To the queue.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        [Pure]
+        public static Queue<T> ToQueue<T>(this IEnumerable<T> enumerable)
+        {
+            Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
+            Contract.Ensures(Contract.Result<Queue<T>>() != null, nameof(CollectionExtensions.ToQueue));
+            return new Queue<T>(enumerable);
+        }
+
         /// <summary>To the observable collection.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
@@ -164,6 +190,18 @@
             Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
             Contract.Ensures(Contract.Result<SortedSet<T>>() != null, nameof(CollectionExtensions.ToSortedSet));
             return new SortedSet<T>(enumerable, comparer);
+        }
+
+        /// <summary>To the stack.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        [Pure]
+        public static Stack<T> ToStack<T>(this IEnumerable<T> enumerable)
+        {
+            Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
+            Contract.Ensures(Contract.Result<Stack<T>>() != null, nameof(CollectionExtensions.ToStack));
+            return new Stack<T>(enumerable);
         }
 
     }
