@@ -226,6 +226,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\IAsyncActivatable.cs" />
+    <Compile Include="ViewModels\VersionViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModel`1.cs" />
     <Content Include="Properties\Highway1.Universal.rd.xml" />
