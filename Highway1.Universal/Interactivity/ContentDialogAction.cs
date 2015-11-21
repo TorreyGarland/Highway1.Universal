@@ -4,7 +4,9 @@
     using Microsoft.Xaml.Interactivity;
     using System;
     using System.Diagnostics.Contracts;
+    using System.Threading.Tasks;
     using System.Windows.Input;
+    using Windows.Foundation;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Data;
@@ -14,19 +16,6 @@
     {
 
         #region Properties
-
-        /// <summary>Gets or sets the content.</summary>
-        /// <value>The content.</value>
-        public object Content
-        {
-            get { return GetValue(ContentProperty); }
-            set { SetValue(ContentProperty, value); }
-        }
-
-        /// <summary>Gets the content property.</summary>
-        /// <value>The content property.</value>
-        public static DependencyProperty ContentProperty { get; }
-            = DependencyProperty.Register(nameof(Content), typeof(object), typeof(ContentDialogAction), new PropertyMetadata(null));
 
         /// <summary>Gets or sets the content template.</summary>
         /// <value>The content template.</value>
@@ -164,10 +153,9 @@
         /// <param name="sender">The sender.</param>
         /// <param name="parameter">The parameter.</param>
         /// <returns></returns>
-        public object Execute(object sender, object parameter)
+        public IAsyncOperation<ContentDialogResult> Execute(object sender, object parameter)
         {
             var contentDialog = new ContentDialog();
-            CopyBindings(contentDialog, ContentControl.ContentProperty, nameof(Content));
             CopyBindings(contentDialog, ContentControl.ContentTemplateProperty, nameof(ContentTemplate));
             CopyBindings(contentDialog, ContentDialog.PrimaryButtonCommandParameterProperty, nameof(PrimaryCommandParameter));
             CopyBindings(contentDialog, ContentDialog.PrimaryButtonCommandProperty, nameof(PrimaryCommand));
@@ -177,7 +165,12 @@
             CopyBindings(contentDialog, ContentDialog.SecondaryButtonTextProperty, nameof(SecondaryText));
             CopyBindings(contentDialog, ContentDialog.TitleProperty, nameof(Title));
             CopyBindings(contentDialog, ContentDialog.TitleTemplateProperty, nameof(TitleTemplate));
-            contentDialog.ShowAsync().AsTask().ConfigureAwait(false);
+            return contentDialog.ShowAsync();
+        }
+
+        object IAction.Execute(object sender, object parameter)
+        {
+            Task.Run(() => Execute(sender, parameter));
             return sender;
         }
 

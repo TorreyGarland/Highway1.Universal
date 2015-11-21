@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal
+﻿namespace Highway1.Universal.ViewModels
 {
 
     using System.Diagnostics.Contracts;

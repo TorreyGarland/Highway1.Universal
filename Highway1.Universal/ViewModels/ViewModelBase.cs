@@ -1,14 +1,25 @@
-﻿namespace Highway1.Universal
+﻿namespace Highway1.Universal.ViewModels
 {
 
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using Windows.Foundation.Metadata;
 
     /// <summary>View model base class.</summary>
+    [WebHostHidden]
     public abstract class ViewModelBase : INotifyPropertyChanged, INotifyPropertyChanging
     {
+
+        #region Fields
+
+        private readonly ConcurrentDictionary<string, PropertyChangedEventArgs> _propertyChanged = new ConcurrentDictionary<string, PropertyChangedEventArgs>();
+
+        private readonly ConcurrentDictionary<string, PropertyChangingEventArgs> _propertyChanging = new ConcurrentDictionary<string, PropertyChangingEventArgs>();
+
+        #endregion
 
         #region Methods
 
@@ -17,14 +28,14 @@
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            => PropertyChanged?.Invoke(this, _propertyChanged.GetOrAdd(propertyName ?? string.Empty, key => new PropertyChangedEventArgs(propertyName)));
 
         /// <summary>
         /// Called when [property changing].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
-            => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+            => PropertyChanging?.Invoke(this, _propertyChanging.GetOrAdd(propertyName ?? string.Empty, key => new PropertyChangingEventArgs(propertyName)));
 
         /// <summary>Raises the property changed.</summary>
         /// <param name="propertyNames">The property names.</param>
