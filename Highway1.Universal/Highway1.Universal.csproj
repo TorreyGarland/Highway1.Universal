@@ -206,11 +206,15 @@
     <Compile Include="Controls\NumericUpDown.Constants.cs" />
     <Compile Include="Controls\NumericUpDown.cs" />
     <Compile Include="Controls\NumericUpDown.DependencyProperties.cs" />
+    <Compile Include="Controls\NumericUpDown.DragOverlay.cs" />
     <Compile Include="Controls\NumericUpDown.Fields.cs" />
     <Compile Include="Controls\NumericUpDown.Properties.cs" />
+    <Compile Include="Controls\NumericUpDown.ValueControls.cs" />
     <Compile Include="Controls\UpDownTextBox.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Controls\ControlExtensions.cs" />
+    <Compile Include="Controls\ControlExtensions.Cursors.cs" />
     <Compile Include="Input\AsyncDelegateCommand.cs" />
     <Compile Include="Input\DelegateCommand.cs" />
     <Compile Include="Input\DelegateCommandBase.cs" />

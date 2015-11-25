@@ -24,7 +24,7 @@
         /// <summary>The is read only property</summary>
         /// <value>The is read only property.</value>
         public static DependencyProperty IsReadOnlyProperty { get; } 
-            = DependencyProperty.Register(nameof(IsReadOnly), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false, OnIsReadOnlyChanged));
+            = DependencyProperty.Register(nameof(IsReadOnly), typeof(bool), typeof(NumericUpDown), new PropertyMetadata(false));
 
         /// <summary>The text alignment property</summary>
         /// <value>The text alignment property.</value>

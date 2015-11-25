@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="using:Highway1.Universal.Controls"
-                    xmlns:Converters='using:Highway1.Universal.Converters'>
+                    xmlns:converters='using:Highway1.Universal.Converters'>
+    <converters:BooleanNegationConverter x:Key='BooleanNegationConverter' />
     <Style TargetType="controls:NumericUpDown">
         <Setter Property="Foreground"
                 Value="{StaticResource TextBoxForegroundThemeBrush}" />
@@ -241,22 +242,21 @@
                                                         Style='{TemplateBinding TextBoxStyle}'
                                                         VerticalAlignment='Bottom' />
                                 <Rectangle x:Name="PART_DragOverlay"
+                                           controls:ControlExtensions.SystemCursor="SizeAll"
                                            Fill="Transparent"
                                            Grid.Row='1' />
-                                <!--controls:ControlExtensions.SystemCursor="SizeAll"-->
+                                
                             </Grid>
                             <RepeatButton x:Name="PART_DecrementButton"
                                           Grid.Column="1"
                                           Margin="8,0,0,0"
                                           Style="{StaticResource DecrementButtonStyle}"
-                                          VerticalAlignment='Bottom'
-                                          Visibility='{Binding IsReadOnly, Converter={StaticResource InvertedBooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}' />
+                                          VerticalAlignment='Bottom' />
                             <RepeatButton x:Name="PART_IncrementButton"
                                           Grid.Column="2"
                                           Margin="8,0,0,0"
                                           Style="{StaticResource IncrementButtonStyle}"
-                                          VerticalAlignment='Bottom'
-                                          Visibility='{Binding IsReadOnly, Converter={StaticResource InvertedBooleanToVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}' />
+                                          VerticalAlignment='Bottom' />
                         </Grid>
                     </Border>
                 </ControlTemplate>
