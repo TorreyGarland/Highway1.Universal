@@ -24,7 +24,7 @@
         /// <param name="compare">The compare.</param>
         public DelegateComparer(Func<T, T, int> compare)
         {
-            Contract.Requires<ArgumentNullException>(compare != null);
+            Contract.Requires<ArgumentNullException>(compare != null, nameof(compare));
             _compare = compare;
         }
 

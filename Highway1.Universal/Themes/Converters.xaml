@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="using:Highway1.Universal.Converters">
+    <converters:BooleanNegationConverter x:Key='BooleanNegationConverter' />
+    <converters:BooleanToVisibilityConverter x:Key='BooleanToVisibilityConverter'
+                                             Invert='False' />
+    <converters:BooleanToVisibilityConverter x:Key='InvertedBooleanToVisibilityConverter'
+                                             Invert='True' />
+</ResourceDictionary>

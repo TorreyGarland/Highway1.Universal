@@ -80,7 +80,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
-    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeOnlyPublicSurface>True</CodeContractsRuntimeOnlyPublicSurface>
     <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
     <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
     <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
@@ -107,15 +107,16 @@
     <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
     <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
     <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
-    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsEmitXMLDocs>True</CodeContractsEmitXMLDocs>
     <CodeContractsCustomRewriterAssembly />
     <CodeContractsCustomRewriterClass />
     <CodeContractsLibPaths />
-    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraRewriteOptions>
+    </CodeContractsExtraRewriteOptions>
     <CodeContractsExtraAnalysisOptions />
     <CodeContractsSQLServerOption />
     <CodeContractsBaseLineFile />
-    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
     <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
     <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
     <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
@@ -123,6 +124,7 @@
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
     <DocumentationFile>bin\Release\Highway1.Universal.XML</DocumentationFile>
+    <NoWarn>1036</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <PlatformTarget>ARM</PlatformTarget>
@@ -194,9 +196,19 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="ClassDiagram1.cd" />
     <None Include="Input\DelegateCommands.cd" />
+    <None Include="Libraries\Windows.Foundation.UniversalApiContract.winmd" />
     <None Include="project.json" />
+    <None Include="ViewModels\ViewModels.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentModel\PropertyChangedEventSource`1.cs" />
+    <Compile Include="Controls\Expander.cs" />
+    <Compile Include="Controls\NumericUpDown.Constants.cs" />
+    <Compile Include="Controls\NumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown.DependencyProperties.cs" />
+    <Compile Include="Controls\NumericUpDown.Fields.cs" />
+    <Compile Include="Controls\NumericUpDown.Properties.cs" />
+    <Compile Include="Controls\UpDownTextBox.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Input\AsyncDelegateCommand.cs" />
@@ -226,9 +238,11 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\IAsyncActivatable.cs" />
+    <Compile Include="ViewModels\KeyValueViewModel`2.cs" />
     <Compile Include="ViewModels\VersionViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModel`1.cs" />
+    <Content Include="Libraries\System.Runtime.WindowsRuntime.dll" />
     <Content Include="Properties\Highway1.Universal.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +253,23 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
@@ -246,9 +277,27 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
+         -->
+  <!--<Import Project="$(ProjectDir)..\..\..\Projects\Highway1.Universal\ContractsFix.targets"/>-->
+  <Target Name="BeforeResolveReferences">
+    <Message Text="$(MSBuildThisFileDirectory)Libraries\**\*.dll" />
+    <ItemGroup>
+      <LibrarySearchPathFiles Include="$(MSBuildThisFileDirectory)Libraries\**\*.dll;$(MSBuildThisFileDirectory)Libraries\**\*.winmd;" />
+    </ItemGroup>
+    <Message Text="Adding libraries to assembly search paths" Importance="high" />
+    <RemoveDuplicates Inputs="@(LibrarySearchPathFiles->'%(RootDir)%(Directory)')">
+      <Output TaskParameter="Filtered" ItemName="LibrarySearchPath" />
+    </RemoveDuplicates>
+    <CreateProperty Value="$(AssemblySearchPaths);@(LibrarySearchPath)">
+      <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+    </CreateProperty>
+    <CreateProperty Value="$(CodeContractsLibPaths);@(LibrarySearchPath)">
+      <Output TaskParameter="Value" PropertyName="CodeContractsLibPath" />
+    </CreateProperty>
+  </Target>
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <Message Text="HITT" />
   </Target>
-  -->
 </Project>

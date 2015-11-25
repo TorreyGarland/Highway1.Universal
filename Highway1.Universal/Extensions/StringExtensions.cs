@@ -47,6 +47,8 @@
             return string.IsNullOrEmpty(value);
         }
 
+
+
         /// <summary>
         /// Determines whether [is null or white space].
         /// </summary>
@@ -93,6 +95,7 @@
         [Pure]
         public static BigInteger? ToBigInteger(this string value, NumberStyles style, IFormatProvider provider)
         {
+            // TODO: Code contracts is reporting a warning with the following two lines because of the use of the Pure attribute.
             Contract.Requires<ArgumentException>(!style.HasFlag(NumberStyles.AllowHexSpecifier), nameof(style));
             Contract.Requires<ArgumentException>(!style.HasFlag(NumberStyles.HexNumber), nameof(style));
             return NumericTryParse<BigInteger>(value, style, provider, BigInteger.TryParse);
@@ -234,7 +237,7 @@
         [Pure]
         public static TEnum? ToEnum<TEnum>(this string value, bool ignoreCase = false) where TEnum : struct
         {
-            Contract.Requires<ArgumentException>(typeof(TEnum).GetTypeInfo().IsEnum, nameof(TEnum));
+        //    Contract.Requires<ArgumentException>(typeof(TEnum).GetTypeInfo().IsEnum, nameof(TEnum));
             TEnum result;
             if (Enum.TryParse(value, ignoreCase, out result))
                 return result;
@@ -480,6 +483,17 @@
             Uri uri;
             Uri.TryCreate(value, uriKind, out uri);
             return uri;
+        }
+
+        /// <summary>To the version.</summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        [Pure]
+        public static Version ToVersion(this string value)
+        {
+            Version version;
+            Version.TryParse(value, out version);
+            return version;
         }
 
         [Pure]
