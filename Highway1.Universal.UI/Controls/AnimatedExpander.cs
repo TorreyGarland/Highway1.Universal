@@ -1,6 +1,7 @@
 ﻿namespace Highway1.Universal.UI.Controls
 {
 
+    using Collections;
     using System.Diagnostics;
     using System.Linq;
     using Windows.UI.Xaml;

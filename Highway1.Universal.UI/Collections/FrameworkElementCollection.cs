@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.UI.Controls
+﻿namespace Highway1.Universal.UI.Collections
 {
     using System.Collections.ObjectModel;
     using Windows.Foundation.Collections;
@@ -47,28 +47,7 @@
 
         #region Nested Types
 
-        private sealed class VectorChangedEventArgs : IVectorChangedEventArgs
-        {
-
-            #region Properties
-
-            public CollectionChange CollectionChange { get; }
-
-            public uint Index { get; }
-
-            #endregion
-
-            #region Methods
-
-            public VectorChangedEventArgs(CollectionChange collectionChange, int index)
-            {
-                CollectionChange = collectionChange;
-                Index = (uint)index;
-            }
-
-            #endregion
-
-        }
+     
 
         #endregion
 

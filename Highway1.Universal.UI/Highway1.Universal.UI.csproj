@@ -154,8 +154,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\VectorChangedEventArgs.cs" />
     <Compile Include="Controls\AnimatedExpander.cs" />
-    <Compile Include="Controls\FrameworkElementCollection.cs" />
+    <Compile Include="Collections\FrameworkElementCollection.cs" />
     <Compile Include="Controls\UniformGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\Highway1.Universal.UI.rd.xml" />
@@ -170,9 +171,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Animation\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
