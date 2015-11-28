@@ -128,6 +128,27 @@
             return NumericTryParse<byte>(value, style, provider, byte.TryParse);
         }
 
+        /// <summary>To the camel case.</summary>
+        /// <param name="s">The s.</param>
+        /// <returns></returns>
+        [Pure]
+        public static string ToCamelCase(this string s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+                return s;
+            if (!char.IsUpper(s[0]))
+                return s;
+            var chArray = s.ToCharArray();
+            for (var i = 0; i < chArray.Length; i++)
+            {
+                var flag = (i + 1) < chArray.Length;
+                if (((i > 0) && flag) && !char.IsUpper(chArray[i + 1]))
+                    break;
+                chArray[i] = char.ToLowerInvariant(chArray[i]);
+            }
+            return new string(chArray);
+        }
+
         /// <summary>To the character.</summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>

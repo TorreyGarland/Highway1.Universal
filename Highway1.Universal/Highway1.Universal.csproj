@@ -195,8 +195,10 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="ClassDiagram1.cd" />
+    <Compile Include="ComponentModel\Class1.cs" />
+    <Compile Include="Controls\Class1.cs" />
+    <Compile Include="Converters\ThumbnailToBitmapImageConverter.cs" />
     <None Include="Input\DelegateCommands.cd" />
-    <None Include="Libraries\Windows.Foundation.UniversalApiContract.winmd" />
     <None Include="project.json" />
     <None Include="ViewModels\ViewModels.cd" />
   </ItemGroup>
@@ -218,12 +220,19 @@
     <Compile Include="Input\AsyncDelegateCommand.cs" />
     <Compile Include="Input\DelegateCommand.cs" />
     <Compile Include="Input\DelegateCommandBase.cs" />
+    <Compile Include="Interactivity\Class1.cs" />
     <Compile Include="Interactivity\ContentDialogAction.cs" />
+    <Compile Include="Models\FileInfo.cs" />
+    <Compile Include="Services\AutofacServiceProviderBase.cs" />
+    <Compile Include="Services\DataSource.cs" />
+    <Compile Include="Services\IDataSource.cs" />
     <Compile Include="Services\Navigator\Contracts\ContractForINavigator.cs" />
     <Compile Include="Services\Navigator\Contracts\ContractForINavigatorViewTypeCache.cs" />
     <Compile Include="ComponentModel\DelegateComparer`1.cs" />
     <Compile Include="ComponentModel\DelegateEqualityComparer`1.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="ViewModels\CollectionViewModel`1.cs" />
+    <Compile Include="ViewModels\ControllerBase.cs" />
     <Compile Include="ViewModels\IActivatable.cs" />
     <Compile Include="Services\Navigator\Navigator.NavigateTo.cs" />
     <Compile Include="Services\Navigator\INavigator.cs" />
@@ -246,7 +255,6 @@
     <Compile Include="ViewModels\VersionViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModel`1.cs" />
-    <Content Include="Libraries\System.Runtime.WindowsRuntime.dll" />
     <Content Include="Properties\Highway1.Universal.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -274,7 +282,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Libraries\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
