@@ -1,16 +1,12 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Windows.UI.Core;
     using Windows.UI.Xaml;
-    using System.Diagnostics.Contracts;
 
-    partial class ControlExtensions
+    /// <summary>Control extensions class/module.</summary>
+    public static partial class ControlExtensions
     {
 
         #region Properties
@@ -27,10 +23,10 @@
         /// <summary>Gets the system cursor.</summary>
         /// <param name="dependencyObject">The dependency object.</param>
         /// <returns></returns>
-        [Pure]
         public static CoreCursorType GetSystemCursor(this DependencyObject dependencyObject)
         {
-            Contract.Requires<ArgumentNullException>(dependencyObject != null, nameof(dependencyObject));
+            if (dependencyObject == null)
+                throw new ArgumentNullException(nameof(dependencyObject));
             return (CoreCursorType)dependencyObject.GetValue(SystemCursorProperty);
         }
 
@@ -44,7 +40,8 @@
         /// <param name="value">The value.</param>
         public static void SetSystemCursor(this DependencyObject dependencyObject, CoreCursorType value)
         {
-            Contract.Requires<ArgumentNullException>(dependencyObject != null, nameof(dependencyObject));
+            if (dependencyObject == null)
+                throw new ArgumentNullException(nameof(dependencyObject));
             dependencyObject.SetValue(SystemCursorProperty, value);
         }
 

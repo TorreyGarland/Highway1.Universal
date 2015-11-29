@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     partial class NumericUpDown
@@ -29,7 +29,7 @@
         private const string ValueBarName = "PART_ValueBar";
 
         private const string ValueTextBoxName = "PART_ValueTextBox";
-        
+
     }
 
 }

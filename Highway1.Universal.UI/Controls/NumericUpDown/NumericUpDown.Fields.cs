@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     using Windows.Devices.Input;

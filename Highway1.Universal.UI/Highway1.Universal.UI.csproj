@@ -154,10 +154,33 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\VectorChangedEventArgs.cs" />
     <Compile Include="Controls\AnimatedExpander.cs" />
     <Compile Include="Collections\FrameworkElementCollection.cs" />
+    <Compile Include="Controls\ControlExtensions.Cursors.cs" />
+    <Compile Include="Controls\ControlExtensions.VisualTree.cs" />
+    <Compile Include="Controls\HierarchicalDataTemplate.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.Constants.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.DependencyProperties.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.DragOverlay.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.Fields.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.Properties.cs" />
+    <Compile Include="Controls\NumericUpDown\NumericUpDown.ValueControls.cs" />
     <Compile Include="Controls\UniformGrid.cs" />
+    <Compile Include="Controls\UpDownTextBox.cs" />
+    <Compile Include="Converters\BooleanNegationConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanYesNoConverter.cs" />
+    <Compile Include="Converters\ColorContrastConverter.cs" />
+    <Compile Include="Converters\DecimalToDoubleConverter.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
+    <Compile Include="Converters\ThumbnailToBitmapImageConverter.cs" />
+    <Compile Include="Converters\UtcDateTimeConverter.cs" />
+    <Compile Include="Converters\ZeroIndexConverter.cs" />
+    <Compile Include="Interactivity\BehaviorBase`1.cs" />
+    <Compile Include="Interactivity\ContentDialogAction.cs" />
+    <Compile Include="Interactivity\MultiSelectBehavior.cs" />
+    <Compile Include="Interactivity\PasswordBindingBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\Highway1.Universal.UI.rd.xml" />
   </ItemGroup>
@@ -170,8 +193,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Highway1.Universal\Highway1.Universal.csproj">
+      <Project>{3c48000f-aa5c-4782-9782-08c5ca017991}</Project>
+      <Name>Highway1.Universal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

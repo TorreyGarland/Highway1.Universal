@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     using System;
@@ -25,7 +25,7 @@
 
         private void ValueTextBoxKeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if(e.Key == VirtualKey.Enter && UpdateValueFromText())
+            if (e.Key == VirtualKey.Enter && UpdateValueFromText())
             {
                 UpdateValueText();
                 _valueTextBox?.SelectAll();

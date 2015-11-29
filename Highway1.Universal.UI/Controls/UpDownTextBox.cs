@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     using System;
@@ -8,7 +8,7 @@
     using Windows.UI.Xaml.Input;
 
     /// <summary>Up/down text box class.</summary>
-    [DebuggerNonUserCode]
+    [DebuggerStepThrough]
     public sealed partial class UpDownTextBox : TextBox
     {
 
@@ -17,7 +17,6 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="UpDownTextBox" /> class.
         /// </summary>
-        [DebuggerNonUserCode]
         public UpDownTextBox()
         {
             DefaultStyleKey = typeof(TextBox);
@@ -25,7 +24,6 @@
 
         /// <summary>Raises the <see cref="E:KeyDown" /> event.</summary>
         /// <param name="e">The <see cref="KeyRoutedEventArgs" /> instance containing the event data.</param>
-        [DebuggerNonUserCode]
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Up)
@@ -56,4 +54,5 @@
         #endregion
 
     }
+
 }

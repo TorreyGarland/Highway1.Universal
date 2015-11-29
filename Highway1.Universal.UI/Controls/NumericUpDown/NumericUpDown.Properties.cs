@@ -1,7 +1,12 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     using Windows.UI.Xaml;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
     partial class NumericUpDown
     {
@@ -75,5 +80,4 @@
         }
 
     }
-
 }

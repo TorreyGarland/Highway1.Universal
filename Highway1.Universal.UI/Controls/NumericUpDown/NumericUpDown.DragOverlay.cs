@@ -1,4 +1,4 @@
-﻿namespace Highway1.Universal.Controls
+﻿namespace Highway1.Universal.UI.Controls
 {
 
     using Windows.Devices.Input;
@@ -10,12 +10,7 @@
 
         private void DragOverlayManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            // TODO: Remove dynamics when the Code Contracts team gets their shit together.
-            dynamic delta = e.Delta;
-            dynamic translation = delta.Translation;
-            double dx = translation.X;
-            double dy = translation.Y;
-            if (UpdateByDragging(dx, dy))
+            if (UpdateByDragging(e.Delta.Translation.X, e.Delta.Translation.Y))
                 return;
             e.Handled = true;
         }
