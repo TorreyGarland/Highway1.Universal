@@ -6,6 +6,7 @@
     using Windows.UI.Xaml.Controls;
 
     /// <summary>Multi-select behavior class.</summary>
+    /// <seealso cref="Highway1.Universal.UI.Interactivity.BehaviorBase{Windows.UI.Xaml.Controls.ListViewBase}" />
     public sealed class MultiSelectBehavior : BehaviorBase<ListViewBase>
     {
 

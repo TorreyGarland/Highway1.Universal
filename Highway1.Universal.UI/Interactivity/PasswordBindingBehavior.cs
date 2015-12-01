@@ -5,9 +5,8 @@
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
 
-    /// <summary>
-    /// Password binding behavior class.
-    /// </summary>
+    /// <summary>Password binding behavior class.</summary>
+    /// <seealso cref="Highway1.Universal.UI.Interactivity.BehaviorBase{Windows.UI.Xaml.Controls.PasswordBox}" />
     [DebuggerStepThrough]
     public sealed class PasswordBindingBehavior : BehaviorBase<PasswordBox>
     {

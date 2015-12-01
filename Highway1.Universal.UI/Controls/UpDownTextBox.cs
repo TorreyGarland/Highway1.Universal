@@ -8,6 +8,7 @@
     using Windows.UI.Xaml.Input;
 
     /// <summary>Up/down text box class.</summary>
+    /// <seealso cref="TextBox" />
     [DebuggerStepThrough]
     public sealed partial class UpDownTextBox : TextBox
     {
