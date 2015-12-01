@@ -32,7 +32,8 @@
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
         /// <returns></returns>
-        public int Compare(T x, T y) => _compare(x, y);
+        public int Compare(T x, T y) 
+            => _compare(x, y);
 
         #endregion
 

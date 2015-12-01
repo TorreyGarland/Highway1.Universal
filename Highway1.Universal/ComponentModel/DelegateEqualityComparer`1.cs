@@ -36,14 +36,16 @@
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
         /// <returns></returns>
-        public bool Equals(T x, T y) => _equals(x, y);
+        public bool Equals(T x, T y)
+            => _equals(x, y);
 
         /// <summary>Returns a hash code for this instance.</summary>
         /// <param name="obj">The object.</param>
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        public int GetHashCode(T obj) => (_hashCode?.Invoke(obj)).GetValueOrDefault(EqualityComparer<T>.Default.GetHashCode(obj));
+        public int GetHashCode(T obj) 
+            => (_hashCode?.Invoke(obj)).GetValueOrDefault(EqualityComparer<T>.Default.GetHashCode(obj));
 
         #endregion
 

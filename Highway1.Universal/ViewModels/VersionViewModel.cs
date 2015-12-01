@@ -17,7 +17,8 @@
 
         /// <summary>Gets or sets the major revision.</summary>
         /// <value>The major revision.</value>
-        public short MajorRevision => Value.MajorRevision;
+        public short MajorRevision 
+            => Value.MajorRevision;
 
         /// <summary>Gets the minor.</summary>
         /// <value>The minor.</value>
@@ -25,7 +26,8 @@
 
         /// <summary>Gets or sets the minor revision.</summary>
         /// <value>The minor revision.</value>
-        public short MinorRevision => Value.MinorRevision;
+        public short MinorRevision 
+            => Value.MinorRevision;
 
         /// <summary>Gets the build.</summary>
         /// <value>The build.</value>
@@ -37,7 +39,8 @@
 
         /// <summary>Gets or sets the value.</summary>
         /// <value>The version.</value>
-        public Version Value => (Version)this;
+        public Version Value 
+            => (Version)this;
 
         #endregion
 
@@ -68,6 +71,15 @@
             Build.ValueChanging += ValueChanging;
             Revision.PropertyChanged += OnPropertyChanged;
             Revision.ValueChanging += ValueChanging;
+        }
+
+        [ContractInvariantMethod]
+        private void Invariant()
+        {
+            Contract.Invariant(Major != null, nameof(Major));
+            Contract.Invariant(Minor != null, nameof(Minor));
+            Contract.Invariant(Build != null, nameof(Build));
+            Contract.Invariant(Revision != null, nameof(Revision));
         }
 
         /// <summary>Compares to.</summary>
@@ -106,7 +118,8 @@
         /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string" /> that represents this instance.</returns>
-        public override string ToString() => Value.ToString();
+        public override string ToString()
+            => Value.ToString();
 
         /// <summary>
         /// Returns a <see cref="string" /> that represents this instance.
@@ -140,6 +153,7 @@
         [Pure]
         public static bool TryParse(string input, out VersionViewModel result)
         {
+            Contract.Ensures(Contract.Result<bool>() == (Contract.ValueAtReturn(out result) != null));
             result = (VersionViewModel)input.ToVersion();
             return result != null;
         }

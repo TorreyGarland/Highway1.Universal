@@ -195,33 +195,20 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="ClassDiagram1.cd" />
-    <Compile Include="ComponentModel\Class1.cs" />
-    <Compile Include="Controls\Class1.cs" />
-    <Compile Include="Converters\ThumbnailToBitmapImageConverter.cs" />
     <None Include="Input\DelegateCommands.cd" />
     <None Include="project.json" />
     <None Include="ViewModels\ViewModels.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\MapChangedEventArgs`1.cs" />
+    <Compile Include="Collections\ObservableDictionary`2.cs" />
+    <Compile Include="Collections\ObservableVector`1.cs" />
+    <Compile Include="Collections\RouteValueObservableDictionary.cs" />
+    <Compile Include="Collections\VectorChangedEventArgs.cs" />
     <Compile Include="ComponentModel\PropertyChangedEventSource`1.cs" />
-    <Compile Include="Controls\Expander.cs" />
-    <Compile Include="Controls\NumericUpDown.Constants.cs" />
-    <Compile Include="Controls\NumericUpDown.cs" />
-    <Compile Include="Controls\NumericUpDown.DependencyProperties.cs" />
-    <Compile Include="Controls\NumericUpDown.DragOverlay.cs" />
-    <Compile Include="Controls\NumericUpDown.Fields.cs" />
-    <Compile Include="Controls\NumericUpDown.Properties.cs" />
-    <Compile Include="Controls\NumericUpDown.ValueControls.cs" />
-    <Compile Include="Controls\UpDownTextBox.cs" />
-    <Compile Include="Converters\BooleanNegationConverter.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Controls\ControlExtensions.cs" />
-    <Compile Include="Controls\ControlExtensions.Cursors.cs" />
     <Compile Include="Input\AsyncDelegateCommand.cs" />
     <Compile Include="Input\DelegateCommand.cs" />
     <Compile Include="Input\DelegateCommandBase.cs" />
-    <Compile Include="Interactivity\Class1.cs" />
-    <Compile Include="Interactivity\ContentDialogAction.cs" />
     <Compile Include="Models\FileInfo.cs" />
     <Compile Include="Services\AutofacServiceProviderBase.cs" />
     <Compile Include="Services\DataSource.cs" />
@@ -231,7 +218,7 @@
     <Compile Include="ComponentModel\DelegateComparer`1.cs" />
     <Compile Include="ComponentModel\DelegateEqualityComparer`1.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="ViewModels\CollectionViewModel`1.cs" />
+    <Compile Include="ViewModels\ObservableCollectionViewModel`1.cs" />
     <Compile Include="ViewModels\ControllerBase.cs" />
     <Compile Include="ViewModels\IActivatable.cs" />
     <Compile Include="Services\Navigator\Navigator.NavigateTo.cs" />
@@ -265,26 +252,7 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="Themes\Converters.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Themes\NumericUpDown.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Libraries\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

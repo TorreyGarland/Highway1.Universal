@@ -2,10 +2,10 @@
 {
 
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Numerics;
-    using System.Reflection;
 
     /// <summary>String extensions class/module.</summary>
     public static class StringExtensions
@@ -47,14 +47,13 @@
             return string.IsNullOrEmpty(value);
         }
 
-
-
         /// <summary>
         /// Determines whether [is null or white space].
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
         [Pure]
+        [SuppressMessage("Microsoft.Contracts", "CC1036")]
         public static bool IsNullOrWhiteSpace(this string value)
         {
             Contract.Ensures(Contract.Result<bool>() == string.IsNullOrWhiteSpace(value));
@@ -93,6 +92,7 @@
         /// <param name="provider">The provider.</param>
         /// <returns></returns>
         [Pure]
+        [SuppressMessage("Microsoft.Contracts", "CC1036")]
         public static BigInteger? ToBigInteger(this string value, NumberStyles style, IFormatProvider provider)
         {
             // TODO: Code contracts is reporting a warning with the following two lines because of the use of the Pure attribute.

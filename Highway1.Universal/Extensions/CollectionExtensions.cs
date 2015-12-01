@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Linq;
 
@@ -64,6 +65,16 @@
                 action(item);
             }
         }
+
+        /// <summary>
+        /// Determines whether [is null or empty].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        [Pure]
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) => enumerable == null || !enumerable.Any();
 
         /// <summary>Joineds the specified separator.</summary>
         /// <typeparam name="T"></typeparam>

@@ -4,6 +4,7 @@
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using Windows.Foundation.Metadata;
@@ -15,9 +16,11 @@
 
         #region Fields
 
-        private readonly ConcurrentDictionary<string, PropertyChangedEventArgs> _propertyChanged = new ConcurrentDictionary<string, PropertyChangedEventArgs>();
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly ConcurrentDictionary<string, PropertyChangedEventArgs> _changes = new ConcurrentDictionary<string, PropertyChangedEventArgs>();
 
-        private readonly ConcurrentDictionary<string, PropertyChangingEventArgs> _propertyChanging = new ConcurrentDictionary<string, PropertyChangingEventArgs>();
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly ConcurrentDictionary<string, PropertyChangingEventArgs> _changings = new ConcurrentDictionary<string, PropertyChangingEventArgs>();
 
         #endregion
 
@@ -28,14 +31,14 @@
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, _propertyChanged.GetOrAdd(propertyName ?? string.Empty, key => new PropertyChangedEventArgs(propertyName)));
+            => PropertyChanged?.Invoke(this, _changes.GetOrAdd(propertyName ?? string.Empty, key => new PropertyChangedEventArgs(propertyName)));
 
         /// <summary>
         /// Called when [property changing].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
-            => PropertyChanging?.Invoke(this, _propertyChanging.GetOrAdd(propertyName ?? string.Empty, key => new PropertyChangingEventArgs(propertyName)));
+            => PropertyChanging?.Invoke(this, _changings.GetOrAdd(propertyName ?? string.Empty, key => new PropertyChangingEventArgs(propertyName)));
 
         /// <summary>Raises the property changed.</summary>
         /// <param name="propertyNames">The property names.</param>
