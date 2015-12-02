@@ -2,10 +2,10 @@
 {
 
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using Windows.Storage;
     using Windows.Storage.FileProperties;
-    using System.Diagnostics;
 
     /// <summary>File info class.</summary>
     public sealed class FileInfo : IDisposable
