@@ -39,27 +39,22 @@
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             base.OnCollectionChanged(e);
-            VectorChangedEventArgs args;
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    args = new VectorChangedEventArgs(CollectionChange.ItemInserted, e.NewStartingIndex);
+                    OnVectorChanged(VectorChangedEventArgs.Create(CollectionChange.ItemInserted, (uint)e.NewStartingIndex));
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    args = new VectorChangedEventArgs(CollectionChange.ItemRemoved, e.OldStartingIndex);
+                    OnVectorChanged(VectorChangedEventArgs.Create(CollectionChange.ItemRemoved, (uint)e.OldStartingIndex));
                     break;
                 case NotifyCollectionChangedAction.Replace:
-                    args = new VectorChangedEventArgs(CollectionChange.ItemChanged, e.NewStartingIndex);
+                    OnVectorChanged(VectorChangedEventArgs.Create(CollectionChange.ItemChanged, (uint)e.NewStartingIndex));
                     break;
                 case NotifyCollectionChangedAction.Reset:
                 case NotifyCollectionChangedAction.Move:
-                    args = new VectorChangedEventArgs(CollectionChange.Reset, 0);
-                    break;
-                default:
-                    args = new VectorChangedEventArgs(CollectionChange.ItemChanged, 0);
+                    OnVectorChanged(VectorChangedEventArgs.Create(CollectionChange.Reset));
                     break;
             }
-            OnVectorChanged(args);
         }
 
         /// <summary>Raises the <see cref="E:VectorChanged" /> event.</summary>
