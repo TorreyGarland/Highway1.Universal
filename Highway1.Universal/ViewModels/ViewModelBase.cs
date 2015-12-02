@@ -56,7 +56,7 @@
         /// <param name="value">The value.</param>
         /// <param name="propertyName">Name of the property.</param>
         /// <returns></returns>
-        protected bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))
                 return false;
