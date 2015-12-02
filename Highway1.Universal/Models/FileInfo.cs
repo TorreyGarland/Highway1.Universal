@@ -5,14 +5,18 @@
     using System.Diagnostics.Contracts;
     using Windows.Storage;
     using Windows.Storage.FileProperties;
+    using System.Diagnostics;
 
     /// <summary>File info class.</summary>
-    public sealed class FileInfo //: IDisposable
+    public sealed class FileInfo : IDisposable
     {
 
         #region Fields
 
         private static readonly FileInfo _empty = Create();
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private bool _isDisposed;
 
         #endregion
 
@@ -112,6 +116,25 @@
         {
             Contract.Ensures(Contract.Result<FileInfo>() != null, nameof(Create));
             return new FileInfo(attributes, contentType, dateCreated, displayName, displayType, fileType, folderRelativeId, futureAccessListToken, name, properties, path, thumbnail);
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose() 
+            => Dispose(true);
+
+        private void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    if (Thumbnail != null)
+                        ((IDisposable)Thumbnail).Dispose();
+                }
+                _isDisposed = true;
+            }
         }
 
         /// <summary>Withes the attributes.</summary>
