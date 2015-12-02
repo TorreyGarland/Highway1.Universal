@@ -194,10 +194,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="ClassDiagram1.cd" />
     <None Include="Input\DelegateCommands.cd" />
     <None Include="project.json" />
-    <None Include="ViewModels\ViewModels.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\MapChangedEventArgs`1.cs" />
@@ -218,6 +216,8 @@
     <Compile Include="ComponentModel\DelegateComparer`1.cs" />
     <Compile Include="ComponentModel\DelegateEqualityComparer`1.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="ViewModels\BindableValidator.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ObservableCollectionViewModel`1.cs" />
     <Compile Include="ViewModels\ControllerBase.cs" />
     <Compile Include="ViewModels\IActivatable.cs" />
@@ -239,6 +239,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\IAsyncActivatable.cs" />
     <Compile Include="ViewModels\KeyValueViewModel`2.cs" />
+    <Compile Include="ViewModels\ValidatableViewModelBase.cs" />
     <Compile Include="ViewModels\VersionViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModel`1.cs" />
