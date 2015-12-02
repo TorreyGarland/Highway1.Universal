@@ -1,6 +1,7 @@
 ﻿namespace Highway1.Universal
 {
     using ComponentModel;
+    using Collections;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -148,6 +149,18 @@
             Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
             Contract.Ensures(Contract.Result<ObservableCollection<T>>() != null, nameof(CollectionExtensions.ToObservableCollection));
             return new ObservableCollection<T>(enumerable);
+        }
+
+        /// <summary>To the observable vector.</summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        [Pure]
+        public static ObservableVector<T> ToObservableVector<T>(this IEnumerable<T> enumerable)
+        {
+            Contract.Requires<ArgumentNullException>(enumerable != null, nameof(enumerable));
+            Contract.Ensures(Contract.Result<ObservableVector<T>>() != null, nameof(CollectionExtensions.ToObservableVector));
+            return new ObservableVector<T>(enumerable);
         }
 
         /// <summary>To the read only collection.</summary>

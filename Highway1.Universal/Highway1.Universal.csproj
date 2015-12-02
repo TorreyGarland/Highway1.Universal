@@ -217,9 +217,9 @@
     <Compile Include="ComponentModel\DelegateEqualityComparer`1.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="ViewModels\BindableValidator.cs" />
+    <Compile Include="ViewModels\ControllerBase.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ObservableCollectionViewModel`1.cs" />
-    <Compile Include="ViewModels\ControllerBase.cs" />
     <Compile Include="ViewModels\IActivatable.cs" />
     <Compile Include="Services\Navigator\Navigator.NavigateTo.cs" />
     <Compile Include="Services\Navigator\INavigator.cs" />
