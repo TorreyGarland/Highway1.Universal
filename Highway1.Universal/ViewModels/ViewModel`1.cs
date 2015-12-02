@@ -8,7 +8,7 @@
 
     /// <summary>View model class.</summary>
     /// <typeparam name="T"></typeparam>
-    public class ViewModel<T> : ViewModelBase
+    public class ViewModel<T> : ViewModelBase, IViewModel
     {
 
         #region Fields
@@ -18,6 +18,8 @@
         #endregion
 
         #region Properties
+
+        object IViewModel.Value => Value;
 
         /// <summary>Gets or sets the value.</summary>
         /// <value>The value.</value>
